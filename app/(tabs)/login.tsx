@@ -7,10 +7,14 @@ import { Colors } from '@/constants/Colors'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
 import { HelloWave } from '@/components/HelloWave'
-import { TextInput } from 'react-native-paper'
+import { Button, TextInput } from 'react-native-paper'
 
 export default function Login() {
   const [email, setEmail] = useState<string>('')
+
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value)
+  }
 
   return (
     <ParallaxScrollView
@@ -28,21 +32,40 @@ export default function Login() {
         gap: 6,
       }}
       >
-        <ThemedText type='title'>Wellcome to House!</ThemedText>
+        <ThemedText type='title'>Welcome to House!</ThemedText>
         <HelloWave />
       </ThemedView>
+
       <ThemedText style={{alignItems:'center', flexDirection: 'column'}}>
         <TextInput
           label="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ width: '100%', backgroundColor: 'transparent' }}
+          onChange={handleChangeEmail}
+          style={{ fontSize:16, lineHeight:24, width: '100%', backgroundColor: 'transparent' }}
         />
       </ThemedText>
-      <ThemedView>
-        <ThemedText style={{textAlign: 'center', marginTop: 40}} type='subtitle'>Login/Signup</ThemedText>
+
+      <ThemedView style={{marginTop: 10}}>
+        <Button mode='outlined'>
+          <ThemedText style={{textAlign: 'center'}} type='subtitle'>Log in</ThemedText>
+        </Button>
       </ThemedView>
-      <ThemedView style={{marginTop: 30}}>
+
+      <ThemedView style={{flexDirection: 'row', alignItems: 'center', marginTop: 15}}>
+        <ThemedView style={{
+          flex: 1,
+          height: 1,
+          backgroundColor: '#000',
+        }}></ThemedView>
+        <ThemedText style={{marginHorizontal: 10, paddingBottom: 4}}>or</ThemedText>
+        <ThemedView style={{
+          flex: 1,
+          height: 1,
+          backgroundColor: '#000',
+        }}></ThemedView>
+      </ThemedView>
+
+      <ThemedView style={{marginTop: 15}}>
         <ThemedView style={{flexDirection: 'row',justifyContent: 'flex-start', gap:76, alignItems: 'center', marginBottom: 10, padding: 10, backgroundColor: Colors.light.tint, borderRadius: 8}}>
           <FontAwesome5 name="facebook" size={24} color="#fff" />
           <ThemedText style={{color: '#fff'}} type='defaultSemiBold'>Sign in with Facebook</ThemedText>
